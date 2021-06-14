@@ -17,8 +17,9 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"lint": "eslint ./",
-		"lintFix": "eslint ./ --fix",
-		"format": "prettier --write \"**/*.{js,jsx,json,md}\""
+		"lint-fix": "eslint ./ --fix",
+		"format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+		"quality-verify": "yarn lint && yarn lint-fix && yarn format"
 	},
 	"browserslist": {
 		"production": [
@@ -41,6 +42,22 @@
 		"eslint-plugin-prettier": "^3.4.0",
 		"eslint-plugin-react": "^7.24.0",
 		"eslint-plugin-react-hooks": "^4.2.0",
+		"husky": "^6.0.0",
+		"lint-staged": "^11.0.0",
 		"prettier": "^2.3.1"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"pre-push": "npm run quality-verify"
+		}
+	},
+	"lint-staged": {
+		"*.+(js|jsx)": [
+			"npm run lint"
+		],
+		"*.+(json|css|md)": [
+			"npm run quality-verify"
+		]
 	}
 }
