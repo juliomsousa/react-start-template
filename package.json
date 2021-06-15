@@ -18,8 +18,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "quality-verify": "yarn lint && yarn lint-fix && yarn format",
+    "prettier-check": "prettier --check .",
+    "prettier-format": "prettier --write . --ignore-unknown",
+    "quality-verify": "yarn lint && yarn prettier-check",
     "postinstall": "husky install"
   },
   "browserslist": {
@@ -48,6 +49,9 @@
     "prettier": "^2.3.1"
   },
   "lint-staged": {
-    "*.{js,jsx,json,md}": "npm run quality-verify"
+    "*.{js,jsx,json,md}": [
+      "eslint",
+      "prettier --check"
+    ]
   }
 }
