@@ -49,8 +49,11 @@
     "prettier": "^2.3.1"
   },
   "lint-staged": {
-    "*.{js,jsx,json,md}": [
+    "*.(js|jsx)": [
       "eslint",
+      "prettier --check"
+    ],
+    "*.(js|jsx|json|md)": [
       "prettier --check"
     ]
   }
